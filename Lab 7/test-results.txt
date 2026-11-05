@@ -1,0 +1,68 @@
+......................................................                   [100%]
+============================ Hypothesis Statistics ============================
+test_processor.py::test_parse_storage_quota_no_crash:
+
+  - during generate phase (0.17 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_compute_compression_ratio_no_crash:
+
+  - during generate phase (0.23 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_lookup_bandwidth_tier_rate_no_crash:
+
+  - during generate phase (0.24 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_nonstring_inputs_are_rejected_without_exceptions:
+
+  - during generate phase (0.19 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 18 invalid test cases
+    - Events:
+      * 0.94%, Retried draw from text(characters(codec='utf-8'), max_size=5).filter(not_yet_in_unique_list) to satisfy filter
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_valid_quotas_preserve_conversion:
+
+  - during generate phase (0.25 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_valid_ratios_preserve_calculation:
+
+  - during generate phase (0.20 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+test_processor.py::test_valid_tiers_preserve_case_insensitive_prefix_lookup:
+
+  - during generate phase (0.33 seconds):
+    - Typical runtimes: ~ 0-1 ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+54 passed in 2.09s

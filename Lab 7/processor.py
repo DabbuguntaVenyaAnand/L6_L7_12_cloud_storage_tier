@@ -1,56 +1,87 @@
+"""Storage helpers hardened for Lab 7.
+
+Invalid inputs return None; valid inputs retain the starter's result formats.
+The CLI turns None into a clear message and continues to the next operation.
+"""
+import math
+import re
+
+MAX_INPUT_LENGTH = 128
+_QUOTA = re.compile(r"([0-9]+)(MB|GB|TB)")
+
+
+def _clean_text(value):
+    if not isinstance(value, str) or len(value) > MAX_INPUT_LENGTH:
+        return None
+    return value.strip()
+
+
 def parse_storage_quota(quota_str):
+    """Convert nonnegative integer MB/GB/TB amounts to GB, or return None.
+
+    Decimal units match the original: 1000 MB = 1 GB; 1 TB = 1000 GB.
+    Input length is bounded before conversion to prevent excessive processing.
     """
-    Parses storage quota string with unit suffix into Gigabytes (GB).
-    Assumes format: '<digits><2-letter unit>' (e.g. '500MB', '20GB', '2TB').
-    """
-    cleaned = quota_str.strip().upper()
-    val_str = cleaned[:-2]
-    unit = cleaned[-2:]
-    value = int(val_str)
-    multipliers = {
-        "MB": 0.001,
-        "GB": 1.0,
-        "TB": 1000.0
-    }
-    gb_total = value * multipliers[unit]
-    return f"Quota: {gb_total:.2f} GB"
+    cleaned = _clean_text(quota_str)
+    if not cleaned:
+        return None
+    match = _QUOTA.fullmatch(cleaned.upper())
+    if match is None:
+        return None
+    amount, unit = match.groups()
+    total = int(amount) * {"MB": .001, "GB": 1., "TB": 1000.}[unit]
+    return f"Quota: {total:.2f} GB"
+
 
 def compute_compression_ratio(size_metric_str):
-    """
-    Computes compression ratio: raw_bytes / compressed_bytes.
-    Assumes format: 'raw_bytes:compressed_bytes' (e.g. '1024:256').
-    """
-    raw_str, comp_str = size_metric_str.split(':')
-    raw_bytes = float(raw_str)
-    comp_bytes = float(comp_str)
-    ratio = raw_bytes / comp_bytes
+    """Return rounded raw/compressed ratio, or None for invalid/nonfinite data."""
+    cleaned = _clean_text(size_metric_str)
+    if not cleaned or cleaned.count(":") != 1:
+        return None
+    raw_text, compressed_text = cleaned.split(":")
+    try:
+        raw = float(raw_text)
+        compressed = float(compressed_text)
+    except ValueError:
+        return None
+    if not math.isfinite(raw) or not math.isfinite(compressed) or raw < 0 or compressed <= 0:
+        return None
+    ratio = raw / compressed
+    if not math.isfinite(ratio):
+        return None
     return round(ratio, 2)
 
+
 def lookup_bandwidth_tier_rate(tier_descriptor):
-    """
-    Looks up rate per GB for egress traffic using the first 3 letters of the tier name.
-    Assumes standard tier prefix with at least 3 letters.
-    """
-    prefix = tier_descriptor.strip().upper()[:3]
-    tier_rates = {
-        "HOT": 0.08,
-        "COL": 0.05,
-        "ARC": 0.02
-    }
-    return tier_rates[prefix]
+    """Return a supported tier-prefix rate, or None for unsupported input."""
+    cleaned = _clean_text(tier_descriptor)
+    if not cleaned:
+        return None
+    return {"HOT": .08, "COL": .05, "ARC": .02}.get(cleaned.upper()[:3])
+
 
 def main():
-    print("==== Running parse_storage_quota ====")
-    q_input = input("Enter quota (e.g. 500MB, 10GB, 2TB): ")
-    print(parse_storage_quota(q_input))
+    try:
+        print("==== Running parse_storage_quota ====")
+        value = parse_storage_quota(input("Enter quota (e.g. 500MB, 10GB, 2TB): "))
+        print(value if value is not None else "Invalid quota: use nonnegative digits followed by MB, GB or TB (maximum 128 characters).")
 
-    print("\n==== Running compute_compression_ratio ====")
-    c_input = input("Enter raw:compressed bytes (e.g. 1024:256): ")
-    print("Compression Ratio:", compute_compression_ratio(c_input))
+        print("\n==== Running compute_compression_ratio ====")
+        value = compute_compression_ratio(input("Enter raw:compressed bytes (e.g. 1024:256): "))
+        if value is None:
+            print("Invalid compression input: use finite raw >= 0 and compressed > 0, separated by one colon.")
+        else:
+            print("Compression Ratio:", value)
 
-    print("\n==== Running lookup_bandwidth_tier_rate ====")
-    t_input = input("Enter tier descriptor (e.g. HOT_TIER, COLD, ARCHIVE): ")
-    print("Rate per GB: $", lookup_bandwidth_tier_rate(t_input))
+        print("\n==== Running lookup_bandwidth_tier_rate ====")
+        value = lookup_bandwidth_tier_rate(input("Enter tier descriptor (e.g. HOT_TIER, COLD, ARCHIVE): "))
+        if value is None:
+            print("Invalid tier: use a HOT, COL or ARC prefix (maximum 128 characters).")
+        else:
+            print("Rate per GB: $", value)
+    except EOFError:
+        print("Input ended. Run the application again to enter all three values.")
+
 
 if __name__ == "__main__":
     main()
