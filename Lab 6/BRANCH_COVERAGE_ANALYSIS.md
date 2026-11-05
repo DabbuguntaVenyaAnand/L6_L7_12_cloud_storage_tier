@@ -33,6 +33,6 @@ Alternatively run `powershell -NoProfile -File .\Show-Coverage.ps1 -Mode branch`
 
 Measured logs and JSON metrics are in `evidence/branch-tests.txt`, `evidence/branch-coverage.txt`, and `evidence/branch-coverage.json`.
 
-**Screenshot pending:** capture the actual successful terminal report and save as `evidence/branch-coverage-terminal.png`. No synthetic screenshot has been supplied.
+**Terminal screenshot:** [branch-coverage-terminal.png](evidence/branch-coverage-terminal.png), supplied by the student. It shows 41 passing tests, 40 branch exits, zero partial branches and 100% coverage.
 
 100% branch coverage does not mean 100% path coverage. Loop counts, combinations of decisions, and data values create many additional paths. Function coverage is 2/2 application functions, invoked directly by the tests; this was established by inspection rather than a separate function-coverage tool.

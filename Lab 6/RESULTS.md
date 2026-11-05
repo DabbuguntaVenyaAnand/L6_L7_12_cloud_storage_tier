@@ -9,9 +9,10 @@ Implemented using `Lab_6_Code&BranchCoverage_Student_Handout.docx`.
 - Real command output and JSON evidence: `evidence/`.
 - Original application and starter test: unchanged.
 - Two local commits: code-coverage deliverables first, branch-coverage deliverables second. Lab 7 is excluded.
-- **Still required before submission: two real terminal screenshots and a push to the assigned remote repository.**
+- Actual student-supplied terminal screenshots: `evidence/code-coverage-terminal.png` and `evidence/branch-coverage-terminal.png`, saved and committed separately by coverage type.
+- **Local Lab 6 deliverables are complete. The commits have not been pushed.**
 
-## Take the two screenshots
+## Reproduce the screenshot results
 
 Open PowerShell in this folder and run:
 
@@ -29,9 +30,9 @@ powershell -NoProfile -File .\Show-Coverage.ps1 -Mode branch
 
 Capture the successful test summary and report showing 40 branches, zero partial branches and 100% coverage. Save as `evidence/branch-coverage-terminal.png`.
 
-Only screenshots after at least 90% coverage are required. Screenshot capture could not be automated because the native tool did not expose the terminal window. The saved logs are genuine output, but are not claimed to satisfy the screenshot requirement.
+Both supplied screenshots show results above 90% and include the commands, successful tests and coverage reports. No baseline screenshot is included, following the handout.
 
-Once the images exist, add them to the repository and commit them. This gives at least the two commits required by the handout. Push the local commits when ready to submit.
+The tests, analysis and screenshots have been committed locally, exceeding the minimum two commits required by the handout. Push the local commits when ready to submit.
 
 ## Environment
 
