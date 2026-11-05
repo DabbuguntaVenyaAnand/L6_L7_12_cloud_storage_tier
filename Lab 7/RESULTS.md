@@ -34,7 +34,7 @@ Final suite: **54 passed**, with no failures, skips or expected failures.
 
 ## Four screenshots required by the handout
 
-The code and text evidence are ready. **The PDF is pending the four genuine terminal screenshots.** Run each command from this folder and capture the visible output:
+All four genuine student-supplied terminal screenshots are saved in `evidence/` and embedded in the completed five-page `Lab7_FuzzTesting_Report.pdf`. The PDF was rendered and every page visually checked. To reproduce each screenshot, run:
 
 ```powershell
 powershell -NoProfile -File .\Show-Lab7.ps1 -Mode buggy-app
@@ -43,9 +43,9 @@ powershell -NoProfile -File .\Show-Lab7.ps1 -Mode fixed-app
 powershell -NoProfile -File .\Show-Lab7.ps1 -Mode passing-tests
 ```
 
-Suggested image names in `evidence/`: `01-buggy-app.png`, `02-failing-tests.png`, `03-fixed-app.png`, `04-passing-tests.png`. The first two runs deliberately reproduce failures from the preserved original. They do not overwrite the fixed application.
+Saved screenshot names in `evidence/`: `01-buggy-app.png`, `02-failing-tests.png`, `03-fixed-app.png`, `04-passing-tests.png`. The first two runs deliberately reproduce failures from the preserved original. They do not overwrite the fixed application.
 
-After the images are supplied, include all four in `Lab7_FuzzTesting_Report.pdf`; do not substitute text logs or fabricated screenshots. The handout asks for the PDF, fixed application and updated tests.
+All three handout deliverables are complete locally: `Lab7_FuzzTesting_Report.pdf`, the fixed `processor.py`, and updated `test_processor.py`. The screenshots are embedded without alteration. Local commits have not been pushed.
 
 ## Reproduce tests
 
