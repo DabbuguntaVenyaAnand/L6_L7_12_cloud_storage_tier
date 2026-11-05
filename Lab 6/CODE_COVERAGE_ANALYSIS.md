@@ -15,6 +15,6 @@ From `Lab 6/`, run:
 
 Alternatively run `powershell -NoProfile -File .\Show-Coverage.ps1 -Mode code`.
 
-**Screenshot pending:** capture the actual terminal showing the successful tests and 100% report, and save as `evidence/code-coverage-terminal.png`. The native screenshot tool did not expose the terminal window; no rendered or fabricated screenshot has been substituted.
+**Terminal screenshot:** [code-coverage-terminal.png](evidence/code-coverage-terminal.png), supplied by the student. It shows the successful 7-test run and 100% line-coverage report.
 
 Line coverage records executed statements. It does not prove that every branch or every possible path was exercised. Branch coverage is measured independently in the second deliverable.
