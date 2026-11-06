@@ -1,8 +1,0 @@
-==== Running parse_storage_quota ====
-Enter quota (e.g. 500MB, 10GB, 2TB): Quota: 0.50 GB
-
-==== Running compute_compression_ratio ====
-Enter raw:compressed bytes (e.g. 1024:256): Invalid compression input: use finite raw >= 0 and compressed > 0, separated by one colon.
-
-==== Running lookup_bandwidth_tier_rate ====
-Enter tier descriptor (e.g. HOT_TIER, COLD, ARCHIVE): Rate per GB: $ 0.08
